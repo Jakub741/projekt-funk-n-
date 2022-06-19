@@ -1,25 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+import DynamicTable from "./dynamic-table/DynamicTable";
+import NewSort from "./dynamic-table/NewSort";
+import React, { Component } from 'react';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'; 
+import { useTable } from "react-table";
+
+
+
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: "Id",
+        accessor: "id"
+      },
+      {
+        Header: "Name",
+        accessor: "name" // accessor is the "key" in the data
+      },
+      {
+        Header: "Term1",
+        accessor: "term1"
+      },
+      {
+        Header: "Term2",
+        accessor: "term2"
+      }
+    ],
+    []
   );
-}
 
+  const data = React.useMemo(
+    () => [
+      {
+
+        id: "1",
+        name: "Alfred",
+        term1: "E",
+        term2: "A"
+      },
+      {
+        id: "1",
+        name: "Alfred",
+        term1: "E",
+        term2: "A"
+      },
+      {
+        id: "1",
+        name: "Alfred",
+        term1: "E",
+        term2: "A"
+      }
+    ],
+    []
+  );
+
+
+
+  {
+  return (
+    //<DynamicTable />
+    <NewSort columns={columns} data={data}/>
+  );
+  }
+}
 export default App;
